@@ -24,3 +24,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.rfm-marquee-container {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.rfm-overlay {
+  display: none !important;
+}

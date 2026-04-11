@@ -1,0 +1,127 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { LogoTwitter, LogoFacebook, LogoInstagram, LogoLinkedin } from "@carbon/icons-react";
+
+const navLinks = [
+  { label: "Home", href: "#" },
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Download App", href: "#" },
+  { label: "About Us", href: "#" },
+];
+
+const supportLinks = [
+  { label: "Help Center", href: "#" },
+  { label: "Contact Us", href: "#contact" },
+  { label: "Privacy Policy", href: "#" },
+  { label: "Terms of Service", href: "#" },
+];
+
+const socials = [
+  { Icon: LogoTwitter, href: "#" },
+  { Icon: LogoFacebook, href: "#" },
+  { Icon: LogoInstagram, href: "#" },
+  { Icon: LogoLinkedin, href: "#" },
+];
+
+export default function Footer() {
+  return (
+    <footer className="bg-[#171C1A] pt-16 pb-8 px-6 md:px-10 lg:px-[58px]">
+      <div className="max-w-[1280px] mx-auto flex flex-col gap-12 lg:px-8">
+        <div className="flex flex-col lg:flex-row gap-12">
+          {/* Brand */}
+          <div className="flex flex-col gap-4 w-full lg:w-[320px] shrink-0">
+            <a href="#" className="flex items-center gap-2">
+              <Image src="/images/footer-logo.png" alt="WasteWise" width={40} height={40} />
+              <span className="text-[20px] font-bold leading-7 text-white font-[family-name:var(--font-rethink)]">
+                Waste<span className="text-[#09B309]">Wise</span>
+              </span>
+            </a>
+            <p className="text-sm leading-[22px] text-white/60 max-w-[320px]">
+              Leading the movement toward sustainable urban living. Join us in building cleaner cities through smart waste management and community action.
+            </p>
+            <div className="flex gap-4">
+              {socials.map((social, i) => (
+                <motion.a
+                  key={i}
+                  href={social.href}
+                  className="w-11 h-11 flex items-center justify-center bg-white/5 border border-white/10 rounded-full"
+                  whileHover={{ scale: 1.1, borderColor: "rgba(9,179,9,0.4)" }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <social.Icon size={18} className="text-[#09B309]" />
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigations */}
+          <div className="flex flex-col gap-4">
+            <h4 className="text-sm font-semibold text-white">Navigations</h4>
+            <div className="flex flex-col gap-3">
+              {navLinks.map((link) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm text-white/60 hover:text-white transition-colors"
+                  whileHover={{ x: 2 }}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          {/* Support */}
+          <div className="flex flex-col gap-4">
+            <h4 className="text-sm font-semibold text-white">Support</h4>
+            <div className="flex flex-col gap-3">
+              {supportLinks.map((link) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm text-white/60 hover:text-white transition-colors"
+                  whileHover={{ x: 2 }}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA Card */}
+          <div className="flex-1">
+            <div className="flex flex-col gap-3 p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-[32px]">
+              <h4 className="text-[20px] font-extrabold leading-7 text-white font-[family-name:var(--font-rethink)]">
+                Let&apos;s Get Started!
+              </h4>
+              <p className="text-xs font-bold leading-5 text-white/60 pb-3 font-[family-name:var(--font-rethink)]">
+                Ready to optimize your waste business or start recycling at home? The future is green.
+              </p>
+              <motion.button
+                className="w-full h-11 bg-[#09B309] text-xs font-extrabold uppercase tracking-[1.2px] text-white rounded-3xl font-[family-name:var(--font-rethink)]"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                Join Waitlist
+              </motion.button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10">
+          <span className="text-sm text-white/40">
+            &copy; 2026 WasteWise Inc. All rights reserved.
+          </span>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-[#09B309]" />
+            <span className="text-sm text-white/40">Protecting our planet</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
