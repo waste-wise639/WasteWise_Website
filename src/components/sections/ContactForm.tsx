@@ -30,44 +30,45 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="bg-white border-t border-[#F1F5F9] px-6 md:px-10 lg:px-[58px]">
-      <div className="max-w-[1280px] mx-auto py-24 lg:px-10">
-        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-10">
+    <section id="contact" className="bg-white border-t border-[#F1F5F9] px-5 md:px-10 lg:px-[58px]">
+      <div className="max-w-[1280px] mx-auto py-8 lg:py-24 lg:px-10">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
+          {/* Contact Info */}
           <motion.div
-            className="flex-1 flex flex-col gap-6"
+            className="flex-1 flex flex-col gap-4 lg:gap-6"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center gap-2 px-3 py-1 w-fit bg-[#09B309]/10 border border-[#0BAE0B]/20 rounded-full">
-              <div className="w-2 h-2 rounded-full bg-[#09B309]" />
-              <span className="text-xs font-bold tracking-[1.2px] uppercase text-[#09B309] font-[family-name:var(--font-rethink)]">
+            <div className="flex items-center gap-[6px] lg:gap-2 px-[9px] lg:px-3 py-[3px] lg:py-1 w-fit bg-[#09B309]/10 border border-[#0BAE0B]/20 rounded-full">
+              <div className="w-[6px] h-[6px] lg:w-2 lg:h-2 rounded-full bg-[#09B309]" />
+              <span className="text-[10px] lg:text-xs font-bold tracking-[1px] lg:tracking-[1.2px] uppercase text-[#09B309] font-[family-name:var(--font-rethink)]">
                 Support Center
               </span>
             </div>
 
-            <h2 className="text-[32px] lg:text-[48px] font-extrabold leading-[60px] tracking-[-1.2px] text-[#171C1A] font-[family-name:var(--font-rethink)]">
-              Ready to make a <span className="text-[#09B309]">difference?</span>
+            <h2 className="text-[34px] lg:text-[48px] font-extrabold leading-[36px] lg:leading-[60px] tracking-[-1px] lg:tracking-[-1.2px] text-[#171C1A] font-[family-name:var(--font-rethink)]">
+              Ready to make a difference?
             </h2>
 
-            <div className="flex flex-col gap-6 pt-2">
+            <div className="flex flex-col gap-5 lg:gap-6 pt-[6px] lg:pt-2">
               {contactInfo.map((info) => {
                 const Icon = info.icon;
                 return (
                   <motion.div
                     key={info.label}
-                    className="flex items-center gap-5"
+                    className="flex items-center gap-4 lg:gap-5"
                     whileHover={{ x: 4 }}
                   >
-                    <div className="w-12 h-12 flex items-center justify-center bg-[#09B309]/10 rounded-xl shrink-0">
-                      <Icon size={20} className="text-[#09B309]" />
+                    <div className="w-[38px] h-[38px] lg:w-12 lg:h-12 flex items-center justify-center bg-[#09B309]/10 rounded-[10px] lg:rounded-xl shrink-0">
+                      <Icon size={16} className="text-[#09B309] lg:w-5 lg:h-5" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-sm font-bold uppercase tracking-[0.35px] text-[#0F172A] font-[family-name:var(--font-rethink)]">
+                      <span className="text-[11px] lg:text-sm font-bold uppercase tracking-[0.28px] lg:tracking-[0.35px] text-[#0F172A] font-[family-name:var(--font-rethink)]">
                         {info.label}
                       </span>
-                      <span className="text-base text-[#64748B] font-[family-name:var(--font-rethink)]">
+                      <span className="text-[13px] lg:text-base text-[#64748B] font-[family-name:var(--font-rethink)]">
                         {info.value}
                       </span>
                     </div>
@@ -77,59 +78,60 @@ export default function ContactForm() {
             </div>
           </motion.div>
 
+          {/* Form Card */}
           <motion.div
-            className="w-full lg:w-[580px] shrink-0 bg-[#F8FAFC] border border-[#F1F5F9] rounded-[40px] p-12 shadow-[0px_25px_50px_-12px_rgba(226,232,240,0.5)]"
+            className="w-full lg:w-[580px] shrink-0 bg-[#F8FAFC] border border-[#F1F5F9] rounded-[27px] lg:rounded-[40px] p-4 lg:p-12 shadow-[0px_17px_34px_-8px_rgba(226,232,240,0.5)]"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-7">
-              <div className="flex flex-col md:flex-row gap-5">
-                <div className="flex-1 flex flex-col gap-2">
-                  <label className="text-xs font-bold uppercase text-[#64748B] pl-1 font-[family-name:var(--font-rethink)]">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[10px] lg:gap-7">
+              <div className="flex flex-col gap-[10px] lg:gap-5">
+                <div className="flex flex-col gap-[4px] lg:gap-2">
+                  <label className="text-[8px] lg:text-xs font-bold uppercase text-[#64748B] pl-[3px] lg:pl-1 font-[family-name:var(--font-rethink)]">
                     Full Name
                   </label>
                   <input
                     {...register("fullName", { required: "Name is required" })}
                     placeholder="John Doe"
-                    className={`h-14 w-full bg-white rounded-xl px-4 text-base font-medium text-[#171C1A] placeholder:text-[#9CA3AF] outline-none font-[family-name:var(--font-rethink)] shadow-[0px_0px_0px_1px_#E2E8F0] focus:shadow-[0px_0px_0px_2px_#09B309] transition-shadow ${errors.fullName ? "shadow-[0px_0px_0px_1px_#ef4444]" : ""}`}
+                    className={`h-[38px] lg:h-14 w-full bg-white rounded-[8px] lg:rounded-xl px-[11px] lg:px-4 text-[11px] lg:text-base font-medium text-[#171C1A] placeholder:text-[#9CA3AF] outline-none font-[family-name:var(--font-rethink)] shadow-[0px_0px_0px_0.7px_#E2E8F0] focus:shadow-[0px_0px_0px_2px_#09B309] transition-shadow ${errors.fullName ? "shadow-[0px_0px_0px_0.7px_#ef4444]" : ""}`}
                   />
                 </div>
-                <div className="flex-1 flex flex-col gap-2">
-                  <label className="text-xs font-bold uppercase text-[#64748B] pl-1 font-[family-name:var(--font-rethink)]">
+                <div className="flex flex-col gap-[4px] lg:gap-2">
+                  <label className="text-[8px] lg:text-xs font-bold uppercase text-[#64748B] pl-[3px] lg:pl-1 font-[family-name:var(--font-rethink)]">
                     Email Address
                   </label>
                   <input
                     {...register("email", { required: "Email is required", pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Invalid email" } })}
                     placeholder="john@example.com"
-                    className={`h-14 w-full bg-white rounded-xl px-4 text-base font-medium text-[#171C1A] placeholder:text-[#9CA3AF] outline-none font-[family-name:var(--font-rethink)] shadow-[0px_0px_0px_1px_#E2E8F0] focus:shadow-[0px_0px_0px_2px_#09B309] transition-shadow ${errors.email ? "shadow-[0px_0px_0px_1px_#ef4444]" : ""}`}
+                    className={`h-[38px] lg:h-14 w-full bg-white rounded-[8px] lg:rounded-xl px-[11px] lg:px-4 text-[11px] lg:text-base font-medium text-[#171C1A] placeholder:text-[#9CA3AF] outline-none font-[family-name:var(--font-rethink)] shadow-[0px_0px_0px_0.7px_#E2E8F0] focus:shadow-[0px_0px_0px_2px_#09B309] transition-shadow ${errors.email ? "shadow-[0px_0px_0px_0.7px_#ef4444]" : ""}`}
                   />
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <label className="text-xs font-bold uppercase text-[#64748B] pl-1 font-[family-name:var(--font-rethink)]">
+              <div className="flex flex-col gap-[4px] lg:gap-2">
+                <label className="text-[8px] lg:text-xs font-bold uppercase text-[#64748B] pl-[3px] lg:pl-1 font-[family-name:var(--font-rethink)]">
                   Message
                 </label>
                 <textarea
                   {...register("message", { required: "Message is required" })}
                   placeholder="How can we help you?"
-                  rows={4}
-                  className={`w-full bg-white rounded-xl px-4 py-4 text-base text-[#171C1A] placeholder:text-[#9CA3AF] outline-none resize-none font-[family-name:var(--font-rethink)] shadow-[0px_0px_0px_1px_#E2E8F0] focus:shadow-[0px_0px_0px_2px_#09B309] transition-shadow ${errors.message ? "shadow-[0px_0px_0px_1px_#ef4444]" : ""}`}
+                  rows={3}
+                  className={`w-full bg-white rounded-[8px] lg:rounded-xl px-[11px] lg:px-4 py-[11px] lg:py-4 text-[11px] lg:text-base text-[#171C1A] placeholder:text-[#9CA3AF] outline-none resize-none font-[family-name:var(--font-rethink)] shadow-[0px_0px_0px_0.7px_#E2E8F0] focus:shadow-[0px_0px_0px_2px_#09B309] transition-shadow ${errors.message ? "shadow-[0px_0px_0px_0.7px_#ef4444]" : ""}`}
                 />
               </div>
 
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full h-12 bg-[#09B309] text-white text-base font-bold rounded-full disabled:opacity-70"
+                className="w-full h-[33px] lg:h-12 bg-[#09B309] text-white text-[11px] lg:text-base font-bold rounded-full disabled:opacity-70"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
               >
                 {isSubmitting ? (
                   <motion.div
-                    className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full mx-auto"
+                    className="w-4 h-4 lg:w-5 lg:h-5 border-2 border-white/30 border-t-white rounded-full mx-auto"
                     animate={{ rotate: 360 }}
                     transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
                   />

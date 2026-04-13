@@ -15,8 +15,9 @@ const navLinks = [
 const supportLinks = [
   { label: "Help Center", href: "#" },
   { label: "Contact Us", href: "#contact" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Vendor Policy", href: "/vendor-policy" },
 ];
 
 const socials = [
@@ -28,9 +29,9 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#171C1A] pt-16 pb-8 px-6 md:px-10 lg:px-[58px]">
+    <footer className="bg-[#171C1A] pt-10 lg:pt-16 pb-8 px-5 md:px-10 lg:px-[58px]">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-12 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-12">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-12">
           {/* Brand */}
           <div className="flex flex-col gap-4 w-full lg:w-[320px] shrink-0">
             <a href="#" className="flex items-center gap-2">
@@ -39,7 +40,7 @@ export default function Footer() {
                 Waste<span className="text-[#09B309]">Wise</span>
               </span>
             </a>
-            <p className="text-sm leading-[22px] text-white/60 max-w-[320px]">
+            <p className="text-[14px] leading-[22px] text-white/60 max-w-[320px]">
               Leading the movement toward sustainable urban living. Join us in building cleaner cities through smart waste management and community action.
             </p>
             <div className="flex gap-4">
@@ -93,26 +94,27 @@ export default function Footer() {
 
           {/* CTA Card */}
           <div className="flex-1">
-            <div className="flex flex-col gap-3 p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-[32px]">
-              <h4 className="text-[20px] font-extrabold leading-7 text-white font-[family-name:var(--font-rethink)]">
+            <div className="flex flex-col gap-[11px] lg:gap-3 p-[30px] lg:p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-[30px] lg:rounded-[32px]">
+              <h4 className="text-[19px] lg:text-[20px] font-extrabold leading-[26px] lg:leading-7 text-white font-[family-name:var(--font-rethink)]">
                 Let&apos;s Get Started!
               </h4>
-              <p className="text-xs font-bold leading-5 text-white/60 pb-3 font-[family-name:var(--font-rethink)]">
+              <p className="text-[11px] lg:text-xs font-bold leading-[18px] lg:leading-5 text-white/60 pb-[11px] lg:pb-3 font-[family-name:var(--font-rethink)]">
                 Ready to optimize your waste business or start recycling at home? The future is green.
               </p>
-              <motion.button
-                className="w-full h-11 bg-[#09B309] text-xs font-extrabold uppercase tracking-[1.2px] text-white rounded-3xl font-[family-name:var(--font-rethink)]"
+              <motion.a
+                href="/waitlist"
+                className="w-full h-[41px] lg:h-11 flex items-center justify-center bg-[#09B309] text-[11px] lg:text-xs font-extrabold uppercase tracking-[1.1px] lg:tracking-[1.2px] text-white rounded-[22px] lg:rounded-3xl font-[family-name:var(--font-rethink)]"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
               >
                 Join Waitlist
-              </motion.button>
+              </motion.a>
             </div>
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10">
+        <div className="flex flex-col items-center md:flex-row justify-between gap-2 md:gap-4 pt-4 lg:pt-8 border-t border-white/10">
           <span className="text-sm text-white/40">
             &copy; 2026 WasteWise Inc. All rights reserved.
           </span>

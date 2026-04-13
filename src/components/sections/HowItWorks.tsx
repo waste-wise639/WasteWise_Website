@@ -25,7 +25,7 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="relative py-20 px-6 md:px-10 lg:px-[58px] overflow-hidden"
+      className="relative py-20 px-5 md:px-10 lg:px-[58px] pb-20 overflow-hidden"
       style={{
         background: "#F4FAF4",
       }}
@@ -36,7 +36,7 @@ export default function HowItWorks() {
           background: "radial-gradient(ellipse at 50% 50%, rgba(9,179,9,0.25) 0%, rgba(9,179,9,0.15) 40%, rgba(9,179,9,0.06) 70%, transparent 100%)",
         }}
       />
-      <div className="relative z-10 max-w-[1400px] mx-auto flex flex-col items-center gap-14">
+      <div className="relative z-10 max-w-[1400px] mx-auto flex flex-col items-center gap-10 lg:gap-14">
         <motion.div
           className="flex flex-col items-center gap-3 max-w-[672px]"
           initial={{ opacity: 0, y: 20 }}
@@ -50,32 +50,32 @@ export default function HowItWorks() {
               Process
             </span>
           </div>
-          <h2 className="text-[32px] lg:text-[48px] font-extrabold leading-[1] text-center text-[#171C1A] font-[family-name:var(--font-jakarta)]">
-            Simple waste management in <span className="text-[#09B309]">three easy steps</span>
+          <h2 className="text-[32px] lg:text-[48px] font-extrabold leading-[34px] lg:leading-[1] text-center text-[#171C1A] font-[family-name:var(--font-rethink)] max-w-[297px] lg:max-w-none">
+            Simple waste management in three easy steps
           </h2>
         </motion.div>
 
-        <div className="w-full flex flex-col lg:flex-row justify-center items-start gap-8 lg:gap-[48px]">
+        <div className="w-full flex flex-col lg:flex-row justify-center items-center lg:items-start gap-[30px] lg:gap-[48px]">
           {steps.map((step, index) => (
             <motion.div
               key={step.step}
-              className="relative flex-1"
+              className="relative flex-1 w-full max-w-[353px] lg:max-w-none"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 * index }}
             >
               <motion.div
-                className="relative flex flex-col items-start gap-2 bg-white border border-[#E3E8E3] rounded-2xl h-[238px]"
-                style={{ padding: "40px 32px 32px" }}
+                className="relative flex flex-col items-start gap-2 bg-white border border-[#E3E8E3] rounded-[15px] lg:rounded-2xl"
+                style={{ padding: "38px 30px 30px" }}
                 whileHover={{ y: -6, boxShadow: "0 12px 40px rgba(0,0,0,0.08)" }}
               >
-                <div className="absolute left-[33px] -top-[16px] px-3 py-[5.6px] bg-[#09B309] rounded-full z-10">
-                  <span className="text-xs font-bold text-white">{step.step}</span>
+                <div className="absolute left-[31px] -top-[15px] px-3 py-[5.3px] bg-[#09B309] rounded-full z-10">
+                  <span className="text-[11px] lg:text-xs font-bold text-white">{step.step}</span>
                 </div>
 
-                <div className="w-14 h-14 flex items-center justify-center bg-[#09B309]/10 rounded-2xl">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <div className="w-[53px] h-[53px] lg:w-14 lg:h-14 flex items-center justify-center bg-[#09B309]/10 rounded-[15px] lg:rounded-2xl">
+                  <svg width="23" height="23" viewBox="0 0 24 24" fill="none" className="lg:w-6 lg:h-6">
                     {index === 0 && (
                       <>
                         <path d="M8 2V5M16 2V5" stroke="#09B309" strokeWidth="2" strokeLinecap="round" />
@@ -101,10 +101,10 @@ export default function HowItWorks() {
                   </svg>
                 </div>
 
-                <h3 className="text-[20px] font-bold leading-[28px] text-[#171C1A] mt-3">
+                <h3 className="text-[19px] lg:text-[20px] font-bold leading-[26px] lg:leading-[28px] text-[#171C1A] mt-3">
                   {step.title}
                 </h3>
-                <p className="text-base leading-[26px] text-[#6D7873]">
+                <p className="text-[15px] lg:text-base leading-[25px] lg:leading-[26px] text-[#6D7873]">
                   {step.description}
                 </p>
               </motion.div>
@@ -116,7 +116,8 @@ export default function HowItWorks() {
           ))}
         </div>
 
-        <motion.button
+        <motion.a
+          href="/waitlist"
           className="flex items-center gap-4 px-8 h-12 bg-[#09B309] text-white text-base font-semibold rounded-full shadow-[0px_10px_15px_-3px_rgba(9,179,9,0.2),0px_4px_6px_-4px_rgba(9,179,9,0.2)]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -127,7 +128,7 @@ export default function HowItWorks() {
         >
           Start Your First Pickup
           <ArrowRight size={16} />
-        </motion.button>
+        </motion.a>
       </div>
     </section>
   );

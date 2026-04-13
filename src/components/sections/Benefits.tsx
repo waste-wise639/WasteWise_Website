@@ -39,7 +39,7 @@ export default function Benefits() {
   const benefits = activeTab === "households" ? householdBenefits : vendorBenefits;
 
   return (
-    <section id="benefits" className="py-20 lg:py-28 px-6 md:px-10 lg:px-[58px]" style={{ background: "linear-gradient(180deg, #F5FAF5 0%, #F0F5F0 100%)" }}>
+    <section id="benefits" className="py-10 pb-28 lg:py-20 lg:pb-28 px-5 md:px-10 lg:px-[58px]" style={{ background: "linear-gradient(180deg, #F5FAF5 0%, #F0F5F0 100%)" }}>
       <div className="max-w-[1280px] mx-auto flex flex-col items-center gap-10 px-0 lg:px-8">
         <motion.div
           className="flex flex-col items-center gap-4 max-w-[672px]"
@@ -54,8 +54,8 @@ export default function Benefits() {
               Our Value
             </span>
           </div>
-          <h2 className="text-[32px] lg:text-[48px] font-extrabold leading-[1] text-center text-[#171C1A] font-[family-name:var(--font-jakarta)]">
-            Benefits for <span className="text-[#09B309]">Everyone</span>
+          <h2 className="text-[34px] lg:text-[48px] font-extrabold leading-[48px] lg:leading-[1] text-center text-[#171C1A] font-[family-name:var(--font-rethink)]">
+            Benefits for Everyone
           </h2>
         </motion.div>
 
@@ -66,10 +66,10 @@ export default function Benefits() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <div className="flex items-center p-2 bg-white/80 border border-[#E3E8E3] rounded-full w-[384px] max-w-full h-[52px]">
+          <div className="flex items-center p-[7px] bg-white/80 border border-[#E3E8E3] rounded-full w-[348px] lg:w-[384px] max-w-full h-[49px] lg:h-[52px]">
             <motion.button
               onClick={() => setActiveTab("households")}
-              className="flex-1 flex items-center justify-center gap-2 h-[36px] rounded-full text-sm font-semibold cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 h-[33px] lg:h-[36px] rounded-full text-[13px] lg:text-sm font-semibold cursor-pointer"
               animate={{
                 backgroundColor: activeTab === "households" ? "#09B309" : "transparent",
                 color: activeTab === "households" ? "#FFFFFF" : "#6D7873",
@@ -79,7 +79,7 @@ export default function Benefits() {
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.25 }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="lg:w-4 lg:h-4">
                 <path d="M9 14V22M15 14V22M3 22H21" stroke={activeTab === "households" ? "#fff" : "#6D7873"} strokeWidth="1.6" strokeLinecap="round" />
                 <path d="M3 10L12 2L21 10" stroke={activeTab === "households" ? "#fff" : "#6D7873"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -87,7 +87,7 @@ export default function Benefits() {
             </motion.button>
             <motion.button
               onClick={() => setActiveTab("vendors")}
-              className="flex-1 flex items-center justify-center gap-2 h-[36px] rounded-full text-sm font-semibold cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 h-[33px] lg:h-[36px] rounded-full text-[13px] lg:text-sm font-semibold cursor-pointer"
               animate={{
                 backgroundColor: activeTab === "vendors" ? "#09B309" : "transparent",
                 color: activeTab === "vendors" ? "#FFFFFF" : "#6D7873",
@@ -97,7 +97,7 @@ export default function Benefits() {
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.25 }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="lg:w-4 lg:h-4">
                 <path d="M3 7L12 4L21 7M3 7V17L12 20M3 7L12 10M21 7V17L12 20M21 7L12 10M12 10V20" stroke={activeTab === "vendors" ? "#fff" : "#6D7873"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               Vendors
@@ -118,14 +118,14 @@ export default function Benefits() {
                   {benefits.map((benefit, index) => (
                     <motion.div
                       key={benefit.title}
-                      className="flex items-start gap-4 p-5 rounded-xl"
+                      className="flex items-start gap-3 lg:gap-4 p-4 lg:p-5 rounded-[10px] lg:rounded-xl"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: 0.05 * index }}
                       whileHover={{ backgroundColor: "rgba(9,179,9,0.05)", x: 4, transition: { duration: 0.2 } }}
                     >
-                      <div className="w-11 h-11 shrink-0 flex items-center justify-center bg-[#09B309]/10 rounded-xl">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <div className="w-[35px] h-[35px] lg:w-11 lg:h-11 shrink-0 flex items-center justify-center bg-[#09B309]/10 rounded-[10px] lg:rounded-xl">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="lg:w-5 lg:h-5">
                           {index === 0 && (
                             <>
                               <path d="M12 21V12" stroke="#09B309" strokeWidth="1.67" strokeLinecap="round" />
@@ -147,10 +147,10 @@ export default function Benefits() {
                         </svg>
                       </div>
                       <div className="flex flex-col gap-1">
-                        <h4 className="text-base font-semibold text-[#171C1A] leading-[24px]">
+                        <h4 className="text-[13px] lg:text-base font-semibold text-[#171C1A] leading-[19px] lg:leading-[24px]">
                           {benefit.title}
                         </h4>
-                        <p className="text-sm leading-[23px] text-[#6D7873]">
+                        <p className="text-[12px] lg:text-sm leading-[18px] lg:leading-[23px] text-[#6D7873]">
                           {benefit.description}
                         </p>
                       </div>
@@ -161,7 +161,7 @@ export default function Benefits() {
             </div>
 
             <motion.div
-              className="flex-1 relative cursor-pointer"
+              className="w-full lg:flex-1 relative cursor-pointer"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               whileHover={{ scale: 1.02, y: -4 }}
@@ -169,10 +169,10 @@ export default function Benefits() {
               transition={{ duration: 0.3 }}
             >
               <div
-                className="absolute -inset-3 rounded-3xl pointer-events-none"
+                className="absolute -inset-[5px] lg:-inset-3 rounded-[10px] lg:rounded-3xl pointer-events-none"
                 style={{
                   background: "rgba(9,179,9,0.05)",
-                  filter: "blur(12px)",
+                  filter: "blur(5px)",
                 }}
               />
               <Image
@@ -180,7 +180,7 @@ export default function Benefits() {
                 alt="Happy household with clean environment"
                 width={432}
                 height={324}
-                className="relative z-10 rounded-2xl"
+                className="relative z-10 rounded-[6px] lg:rounded-2xl w-full h-auto"
               />
             </motion.div>
           </div>
