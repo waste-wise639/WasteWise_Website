@@ -8,7 +8,7 @@ const avatars = ["A", "B", "C", "D"];
 
 export default function Hero() {
   return (
-    <section className="pt-[68px] md:pt-[80px] bg-white relative overflow-hidden">
+    <section className="pt-[68px] md:pt-[80px] bg-white dark:bg-[#0F1210] relative overflow-hidden">
       {/* Mobile gradient bg */}
       <div
         className="absolute inset-0 md:hidden pointer-events-none"
@@ -41,15 +41,15 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h1 className="text-[34px] lg:text-[60px] font-extrabold leading-[34px] lg:leading-[1] text-[#171C1A] font-[family-name:var(--font-rethink)]">
+            <h1 className="text-[34px] lg:text-[60px] font-extrabold leading-[34px] lg:leading-[1] text-[#171C1A] dark:text-white font-[family-name:var(--font-rethink)]">
               Smart Waste{"\n"}Management for a
             </h1>
-            <div className="relative w-fit mt-1 lg:mt-2">
+            <div className="relative w-fit mt-1 lg:mt-2 pb-[10px] lg:pb-[12px]">
               <span className="text-[34px] lg:text-[60px] font-extrabold leading-[41px] lg:leading-[1] text-[#09B309] font-[family-name:var(--font-jakarta)]">
                 Cleaner Future
               </span>
-              <svg className="absolute -bottom-1 lg:-bottom-2 left-0 w-full" height="12" viewBox="0 0 432 17" fill="none">
-                <path d="M3 10C100 3 330 3 429 10" stroke="#09B309" strokeWidth="3" strokeLinecap="round" />
+              <svg className="absolute bottom-0 left-0 w-full" height="17" viewBox="0 0 432 17" fill="none">
+                <path d="M3 10C100 3 330 3 429 10" stroke="#09B309" strokeWidth="4.3" strokeLinecap="round" />
               </svg>
             </div>
           </motion.div>
@@ -83,9 +83,9 @@ export default function Hero() {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="flex items-center gap-[11px] lg:gap-4 px-[22px] lg:px-8 h-[33px] lg:h-12 bg-transparent border border-[#D3DAD3] lg:border-[#E3E8E3] text-[#171C1A] text-[11px] lg:text-base font-medium rounded-full shadow-[0px_1px_1.4px_rgba(0,0,0,0.05)]"
+              className="flex items-center gap-[11px] lg:gap-4 px-[22px] lg:px-8 h-[33px] lg:h-12 bg-transparent border border-[#D3DAD3] lg:border-[#E3E8E3] dark:border-white/20 text-[#171C1A] dark:text-white text-[11px] lg:text-base font-medium rounded-full shadow-[0px_1px_1.4px_rgba(0,0,0,0.05)]"
             >
-              <PlayFilledAlt size={11} className="text-[#171C1A] lg:w-4 lg:h-4" />
+              <PlayFilledAlt size={11} className="text-[#171C1A] dark:text-white lg:w-4 lg:h-4" />
               Watch Demo
             </motion.button>
           </motion.div>
@@ -145,7 +145,7 @@ export default function Hero() {
               ))}
             </div>
             <div className="flex flex-col">
-              <span className="text-[10px] lg:text-sm font-semibold text-[#171C1A]">2,000+ Early Users</span>
+              <span className="text-[10px] lg:text-sm font-semibold text-[#171C1A] dark:text-white">2,000+ Early Users</span>
               <span className="text-[8px] lg:text-xs text-[#6D7873]">Joined the waitlist</span>
             </div>
           </motion.div>

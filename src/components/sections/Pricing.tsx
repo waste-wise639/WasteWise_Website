@@ -22,8 +22,7 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="relative py-8 pb-28 lg:py-20 lg:pb-28 px-5 md:px-10 lg:px-[58px] isolate"
-      style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F5FAF5 50%, #FFFFFF 100%)" }}
+      className="relative py-8 pb-28 lg:py-20 lg:pb-28 px-5 md:px-10 lg:px-[58px] isolate bg-gradient-to-b from-white via-[#F5FAF5] to-white dark:from-[#0F1210] dark:via-[#131A14] dark:to-[#0F1210]"
     >
       <div
         className="absolute left-1/2 -translate-x-1/2 top-[72px] lg:-top-4 w-[322px] lg:w-[600px] h-[322px] lg:h-[600px] rounded-full pointer-events-none z-0"
@@ -41,7 +40,7 @@ export default function Pricing() {
           <span className="text-xs font-bold tracking-[1.2px] uppercase text-[#09B309]">
             Pricing
           </span>
-          <h2 className="text-[34px] lg:text-[48px] font-extrabold leading-[34px] lg:leading-[1] text-center text-[#171C1A] font-[family-name:var(--font-rethink)]">
+          <h2 className="text-[34px] lg:text-[48px] font-extrabold leading-[34px] lg:leading-[1] text-center text-[#171C1A] dark:text-white font-[family-name:var(--font-rethink)]">
             Simple, Transparent Pricing
           </h2>
           <p className="text-[14px] lg:text-lg leading-[18px] lg:leading-7 text-center text-[#6D7873] max-w-[292px] lg:max-w-none">
@@ -52,7 +51,7 @@ export default function Pricing() {
         <div className="flex flex-col lg:flex-row justify-center gap-8 max-w-[896px] w-full items-center lg:items-stretch">
           {/* Household Card */}
           <motion.div
-            className="flex-1 w-full max-w-[353px] lg:max-w-none flex flex-col p-10 gap-2 bg-white border border-[#E3E8E3] rounded-3xl shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]"
+            className="flex-1 w-full max-w-[353px] lg:max-w-none flex flex-col p-10 gap-2 bg-white dark:bg-[#1A211A] border border-[#E3E8E3] dark:border-[#2A352A] rounded-3xl shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -67,10 +66,10 @@ export default function Pricing() {
               <span className="text-xs font-semibold text-[#09B309]">Early Bird</span>
             </div>
 
-            <h3 className="text-[20px] font-bold leading-7 text-[#171C1A] mt-4">Household Pickup</h3>
+            <h3 className="text-[20px] font-bold leading-7 text-[#171C1A] dark:text-white mt-4">Household Pickup</h3>
 
             <div className="flex items-baseline gap-1">
-              <span className="text-[48px] font-bold leading-[48px] text-[#171C1A]">&#8358;2,500</span>
+              <span className="text-[48px] font-bold leading-[48px] text-[#171C1A] dark:text-white">&#8358;2,500</span>
               <span className="text-base text-[#6D7873]">/week</span>
             </div>
 
@@ -84,13 +83,13 @@ export default function Pricing() {
                   <div className="w-5 h-5 rounded-full bg-[#09B309]/10 flex items-center justify-center shrink-0">
                     <Checkmark size={12} className="text-[#09B309]" />
                   </div>
-                  <span className="text-sm text-[#171C1A]">{f}</span>
+                  <span className="text-sm text-[#171C1A] dark:text-white">{f}</span>
                 </div>
               ))}
             </div>
 
             <motion.button
-              className="flex items-center justify-center gap-4 w-full h-12 bg-[#171C1A] text-white text-base font-semibold rounded-full shadow-[0px_1px_3px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)]"
+              className="flex items-center justify-center gap-4 w-full h-12 bg-[#171C1A] dark:bg-white text-white dark:text-[#171C1A] text-base font-semibold rounded-full shadow-[0px_1px_3px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)]"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
             >

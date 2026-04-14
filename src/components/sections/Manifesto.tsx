@@ -12,13 +12,14 @@ const tags = [
 
 export default function Manifesto() {
   return (
-    <section
-      className="py-8 lg:py-20 px-5 md:px-10 lg:px-[58px]"
-      style={{
-        background: "radial-gradient(84.85% 70.71% at 60% 50%, rgba(9,179,9,0.35) 0%, rgba(9,179,9,0.22) 30%, rgba(9,179,9,0.12) 50%, #FFFFFF 75%)",
-      }}
-    >
-      <div className="max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
+    <section className="relative py-8 lg:py-20 px-5 md:px-10 lg:px-[58px] bg-white dark:bg-[#0F1210]">
+      <div
+        className="absolute inset-0 pointer-events-none dark:opacity-40"
+        style={{
+          background: "radial-gradient(84.85% 70.71% at 60% 50%, rgba(9,179,9,0.35) 0%, rgba(9,179,9,0.22) 30%, rgba(9,179,9,0.12) 50%, transparent 75%)",
+        }}
+      />
+      <div className="relative z-10 max-w-[1216px] mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
         {/* Image Card */}
         <motion.div
           className="flex flex-col justify-end w-full lg:w-[53%] h-[195px] lg:h-[356px] rounded-[17px] lg:rounded-[31px] px-[11px] lg:px-[77px] pb-[17px] lg:pb-[31px]"
@@ -66,7 +67,7 @@ export default function Manifesto() {
             </span>
           </div>
 
-          <h2 className="text-[34px] lg:text-[48px] font-extrabold leading-[40px] lg:leading-[1] text-center lg:text-left text-[#171C1A] font-[family-name:var(--font-rethink)] max-w-[313px] lg:max-w-none">
+          <h2 className="text-[34px] lg:text-[48px] font-extrabold leading-[40px] lg:leading-[1] text-center lg:text-left text-[#171C1A] dark:text-white font-[family-name:var(--font-rethink)] max-w-[313px] lg:max-w-none">
             Changing how Africa breathes.
           </h2>
 
@@ -78,7 +79,7 @@ export default function Manifesto() {
 
           <div className="relative pl-[26px] lg:pl-6 border-l-[3px] border-[#09B309]/20 self-start">
             <Image src="/images/globe.png" alt="" width={32} height={32} className="absolute -left-[12px] lg:-left-[15px] -top-[13px] lg:-top-2 z-10" />
-            <p className="text-[14px] lg:text-base italic leading-[22px] lg:leading-[26px] text-[#171C1A]">
+            <p className="text-[14px] lg:text-base italic leading-[22px] lg:leading-[26px] text-[#171C1A] dark:text-white/90">
               &ldquo;We empower households to live cleaner lives and help vendors grow sustainable businesses, reducing landfill waste and protecting our environment for future generations.&rdquo;
             </p>
           </div>
@@ -87,7 +88,7 @@ export default function Manifesto() {
             {tags.map((tag) => (
               <motion.div
                 key={tag.label}
-                className="flex items-center gap-2 px-4 py-2 bg-[#EAF6EA] rounded-full h-[36px]"
+                className="flex items-center gap-2 px-4 py-2 bg-[#EAF6EA] dark:bg-[#09B309]/10 rounded-full h-[36px]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -96,7 +97,7 @@ export default function Manifesto() {
                 ) : tag.Icon ? (
                   <tag.Icon size={16} className="text-[#09B309]" />
                 ) : null}
-                <span className="text-sm font-medium text-[#171C1A] whitespace-nowrap">{tag.label}</span>
+                <span className="text-sm font-medium text-[#171C1A] dark:text-white whitespace-nowrap">{tag.label}</span>
               </motion.div>
             ))}
           </div>

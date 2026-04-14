@@ -30,7 +30,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="bg-white border-t border-[#F1F5F9] px-5 md:px-10 lg:px-[58px]">
+    <section id="contact" className="bg-white dark:bg-[#0F1210] border-t border-[#F1F5F9] dark:border-[#1A211A] px-5 md:px-10 lg:px-[58px]">
       <div className="max-w-[1280px] mx-auto py-8 lg:py-24 lg:px-10">
         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
           {/* Contact Info */}
@@ -48,7 +48,7 @@ export default function ContactForm() {
               </span>
             </div>
 
-            <h2 className="text-[34px] lg:text-[48px] font-extrabold leading-[36px] lg:leading-[60px] tracking-[-1px] lg:tracking-[-1.2px] text-[#171C1A] font-[family-name:var(--font-rethink)]">
+            <h2 className="text-[34px] lg:text-[48px] font-extrabold leading-[36px] lg:leading-[60px] tracking-[-1px] lg:tracking-[-1.2px] text-[#171C1A] dark:text-white font-[family-name:var(--font-rethink)]">
               Ready to make a difference?
             </h2>
 
@@ -65,7 +65,7 @@ export default function ContactForm() {
                       <Icon size={16} className="text-[#09B309] lg:w-5 lg:h-5" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[11px] lg:text-sm font-bold uppercase tracking-[0.28px] lg:tracking-[0.35px] text-[#0F172A] font-[family-name:var(--font-rethink)]">
+                      <span className="text-[11px] lg:text-sm font-bold uppercase tracking-[0.28px] lg:tracking-[0.35px] text-[#0F172A] dark:text-white font-[family-name:var(--font-rethink)]">
                         {info.label}
                       </span>
                       <span className="text-[13px] lg:text-base text-[#64748B] font-[family-name:var(--font-rethink)]">
@@ -80,7 +80,7 @@ export default function ContactForm() {
 
           {/* Form Card */}
           <motion.div
-            className="w-full lg:w-[580px] shrink-0 bg-[#F8FAFC] border border-[#F1F5F9] rounded-[27px] lg:rounded-[40px] p-4 lg:p-12 shadow-[0px_17px_34px_-8px_rgba(226,232,240,0.5)]"
+            className="w-full lg:w-[580px] shrink-0 bg-[#F8FAFC] dark:bg-[#1A211A] border border-[#F1F5F9] dark:border-[#2A352A] rounded-[27px] lg:rounded-[40px] p-4 lg:p-12 shadow-[0px_17px_34px_-8px_rgba(226,232,240,0.5)]"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -95,7 +95,7 @@ export default function ContactForm() {
                   <input
                     {...register("fullName", { required: "Name is required" })}
                     placeholder="John Doe"
-                    className={`h-[38px] lg:h-14 w-full bg-white rounded-[8px] lg:rounded-xl px-[11px] lg:px-4 text-[11px] lg:text-base font-medium text-[#171C1A] placeholder:text-[#9CA3AF] outline-none font-[family-name:var(--font-rethink)] shadow-[0px_0px_0px_0.7px_#E2E8F0] focus:shadow-[0px_0px_0px_2px_#09B309] transition-shadow ${errors.fullName ? "shadow-[0px_0px_0px_0.7px_#ef4444]" : ""}`}
+                    className={`h-[38px] lg:h-14 w-full bg-white dark:bg-[#0F1210] rounded-[8px] lg:rounded-xl px-[11px] lg:px-4 text-[11px] lg:text-base font-medium text-[#171C1A] dark:text-white placeholder:text-[#9CA3AF] outline-none font-[family-name:var(--font-rethink)] shadow-[0px_0px_0px_0.7px_#E2E8F0] focus:shadow-[0px_0px_0px_2px_#09B309] transition-shadow ${errors.fullName ? "shadow-[0px_0px_0px_0.7px_#ef4444]" : ""}`}
                   />
                 </div>
                 <div className="flex flex-col gap-[4px] lg:gap-2">
@@ -105,7 +105,7 @@ export default function ContactForm() {
                   <input
                     {...register("email", { required: "Email is required", pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Invalid email" } })}
                     placeholder="john@example.com"
-                    className={`h-[38px] lg:h-14 w-full bg-white rounded-[8px] lg:rounded-xl px-[11px] lg:px-4 text-[11px] lg:text-base font-medium text-[#171C1A] placeholder:text-[#9CA3AF] outline-none font-[family-name:var(--font-rethink)] shadow-[0px_0px_0px_0.7px_#E2E8F0] focus:shadow-[0px_0px_0px_2px_#09B309] transition-shadow ${errors.email ? "shadow-[0px_0px_0px_0.7px_#ef4444]" : ""}`}
+                    className={`h-[38px] lg:h-14 w-full bg-white dark:bg-[#0F1210] rounded-[8px] lg:rounded-xl px-[11px] lg:px-4 text-[11px] lg:text-base font-medium text-[#171C1A] dark:text-white placeholder:text-[#9CA3AF] outline-none font-[family-name:var(--font-rethink)] shadow-[0px_0px_0px_0.7px_#E2E8F0] focus:shadow-[0px_0px_0px_2px_#09B309] transition-shadow ${errors.email ? "shadow-[0px_0px_0px_0.7px_#ef4444]" : ""}`}
                   />
                 </div>
               </div>
@@ -118,7 +118,7 @@ export default function ContactForm() {
                   {...register("message", { required: "Message is required" })}
                   placeholder="How can we help you?"
                   rows={3}
-                  className={`w-full bg-white rounded-[8px] lg:rounded-xl px-[11px] lg:px-4 py-[11px] lg:py-4 text-[11px] lg:text-base text-[#171C1A] placeholder:text-[#9CA3AF] outline-none resize-none font-[family-name:var(--font-rethink)] shadow-[0px_0px_0px_0.7px_#E2E8F0] focus:shadow-[0px_0px_0px_2px_#09B309] transition-shadow ${errors.message ? "shadow-[0px_0px_0px_0.7px_#ef4444]" : ""}`}
+                  className={`w-full bg-white dark:bg-[#0F1210] rounded-[8px] lg:rounded-xl px-[11px] lg:px-4 py-[11px] lg:py-4 text-[11px] lg:text-base text-[#171C1A] dark:text-white placeholder:text-[#9CA3AF] outline-none resize-none font-[family-name:var(--font-rethink)] shadow-[0px_0px_0px_0.7px_#E2E8F0] focus:shadow-[0px_0px_0px_2px_#09B309] transition-shadow ${errors.message ? "shadow-[0px_0px_0px_0.7px_#ef4444]" : ""}`}
                 />
               </div>
 

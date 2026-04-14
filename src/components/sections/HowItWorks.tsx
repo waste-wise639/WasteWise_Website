@@ -25,10 +25,7 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="relative py-20 px-5 md:px-10 lg:px-[58px] pb-20 overflow-hidden"
-      style={{
-        background: "#F4FAF4",
-      }}
+      className="relative py-20 px-5 md:px-10 lg:px-[58px] pb-20 overflow-hidden bg-[#F4FAF4] dark:bg-[#131A14]"
     >
       <div
         className="absolute inset-0 pointer-events-none"
@@ -50,7 +47,7 @@ export default function HowItWorks() {
               Process
             </span>
           </div>
-          <h2 className="text-[32px] lg:text-[48px] font-extrabold leading-[34px] lg:leading-[1] text-center text-[#171C1A] font-[family-name:var(--font-rethink)] max-w-[297px] lg:max-w-none">
+          <h2 className="text-[32px] lg:text-[48px] font-extrabold leading-[34px] lg:leading-[1] text-center text-[#171C1A] dark:text-white font-[family-name:var(--font-rethink)] max-w-[297px] lg:max-w-none">
             Simple waste management in three easy steps
           </h2>
         </motion.div>
@@ -66,7 +63,7 @@ export default function HowItWorks() {
               transition={{ duration: 0.5, delay: 0.1 * index }}
             >
               <motion.div
-                className="relative flex flex-col items-start gap-2 bg-white border border-[#E3E8E3] rounded-[15px] lg:rounded-2xl"
+                className="relative flex flex-col items-start gap-2 bg-white dark:bg-[#1A211A] border border-[#E3E8E3] dark:border-[#2A352A] rounded-[15px] lg:rounded-2xl"
                 style={{ padding: "38px 30px 30px" }}
                 whileHover={{ y: -6, boxShadow: "0 12px 40px rgba(0,0,0,0.08)" }}
               >
@@ -101,7 +98,7 @@ export default function HowItWorks() {
                   </svg>
                 </div>
 
-                <h3 className="text-[19px] lg:text-[20px] font-bold leading-[26px] lg:leading-[28px] text-[#171C1A] mt-3">
+                <h3 className="text-[19px] lg:text-[20px] font-bold leading-[26px] lg:leading-[28px] text-[#171C1A] dark:text-white mt-3">
                   {step.title}
                 </h3>
                 <p className="text-[15px] lg:text-base leading-[25px] lg:leading-[26px] text-[#6D7873]">

@@ -39,7 +39,7 @@ export default function Benefits() {
   const benefits = activeTab === "households" ? householdBenefits : vendorBenefits;
 
   return (
-    <section id="benefits" className="py-10 pb-28 lg:py-20 lg:pb-28 px-5 md:px-10 lg:px-[58px]" style={{ background: "linear-gradient(180deg, #F5FAF5 0%, #F0F5F0 100%)" }}>
+    <section id="benefits" className="py-10 pb-28 lg:py-20 lg:pb-28 px-5 md:px-10 lg:px-[58px] bg-gradient-to-b from-[#F5FAF5] to-[#F0F5F0] dark:from-[#0F1210] dark:to-[#131A14]">
       <div className="max-w-[1280px] mx-auto flex flex-col items-center gap-10 px-0 lg:px-8">
         <motion.div
           className="flex flex-col items-center gap-4 max-w-[672px]"
@@ -54,7 +54,7 @@ export default function Benefits() {
               Our Value
             </span>
           </div>
-          <h2 className="text-[34px] lg:text-[48px] font-extrabold leading-[48px] lg:leading-[1] text-center text-[#171C1A] font-[family-name:var(--font-rethink)]">
+          <h2 className="text-[34px] lg:text-[48px] font-extrabold leading-[48px] lg:leading-[1] text-center text-[#171C1A] dark:text-white font-[family-name:var(--font-rethink)]">
             Benefits for Everyone
           </h2>
         </motion.div>
@@ -66,7 +66,7 @@ export default function Benefits() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <div className="flex items-center p-[7px] bg-white/80 border border-[#E3E8E3] rounded-full w-[348px] lg:w-[384px] max-w-full h-[49px] lg:h-[52px]">
+          <div className="flex items-center p-[7px] bg-white/80 dark:bg-white/10 border border-[#E3E8E3] dark:border-white/10 rounded-full w-[348px] lg:w-[384px] max-w-full h-[49px] lg:h-[52px]">
             <motion.button
               onClick={() => setActiveTab("households")}
               className="flex-1 flex items-center justify-center gap-2 h-[33px] lg:h-[36px] rounded-full text-[13px] lg:text-sm font-semibold cursor-pointer"
@@ -147,7 +147,7 @@ export default function Benefits() {
                         </svg>
                       </div>
                       <div className="flex flex-col gap-1">
-                        <h4 className="text-[13px] lg:text-base font-semibold text-[#171C1A] leading-[19px] lg:leading-[24px]">
+                        <h4 className="text-[13px] lg:text-base font-semibold text-[#171C1A] dark:text-white leading-[19px] lg:leading-[24px]">
                           {benefit.title}
                         </h4>
                         <p className="text-[12px] lg:text-sm leading-[18px] lg:leading-[23px] text-[#6D7873]">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Rethink_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import LenisProvider from "@/components/providers/LenisProvider";
+import ThemeProvider from "@/components/providers/ThemeProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -31,11 +32,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${rethinkSans.variable} ${plusJakarta.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-[family-name:var(--font-inter)]">
-        <LenisProvider>
-          {children}
-        </LenisProvider>
+    <html lang="en" className={`${inter.variable} ${rethinkSans.variable} ${plusJakarta.variable} h-full antialiased`} suppressHydrationWarning>
+      <body className="min-h-full flex flex-col font-[family-name:var(--font-inter)] bg-white dark:bg-[#0F1210] text-[#171C1A] dark:text-[#E8EDE8] transition-colors duration-300">
+        <ThemeProvider>
+          <LenisProvider>
+            {children}
+          </LenisProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

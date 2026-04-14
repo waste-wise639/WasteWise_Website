@@ -2,25 +2,35 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
-import { Close } from "@carbon/icons-react";
+import { Close, Light, Moon } from "@carbon/icons-react";
 
 const navLinks = [
-  { name: "Home", href: "#" },
-  { name: "How It Works", href: "#how-it-works" },
-  { name: "Benefits", href: "#benefits" },
-  { name: "Testimonials", href: "#testimonials" },
-  { name: "Pricing", href: "#pricing" },
+  { name: "Home", href: "/" },
+  { name: "About us", href: "/about" },
+  { name: "How It Works", href: "/#how-it-works" },
+  { name: "Benefits", href: "/#benefits" },
+  { name: "Testimonials", href: "/#testimonials" },
+  { name: "Pricing", href: "/#pricing" },
 ];
 
 export default function Navbar() {
-  const [active, setActive] = useState("Home");
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    if (href.startsWith("/#")) return false;
+    return pathname === href || pathname.startsWith(href + "/");
+  };
 
   return (
     <>
       <motion.nav
-        className="fixed top-0 left-0 w-full z-50 bg-white backdrop-blur-[4px]"
+        className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#0F1210]/90 backdrop-blur-[4px]"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -35,23 +45,22 @@ export default function Navbar() {
               height={42}
               className="rounded-full"
             />
-            <span className="text-[20px] font-bold leading-[28px] tracking-[-0.5px] text-[#171C1A] font-[family-name:var(--font-rethink)]">
+            <span className="text-[20px] font-bold leading-[28px] tracking-[-0.5px] text-[#171C1A] dark:text-white font-[family-name:var(--font-rethink)]">
               Waste<span className="text-[#09B309]">Wise</span>
             </span>
           </a>
 
           <div className="flex items-center gap-1">
             {navLinks.map((link) => {
-              const isActive = active === link.name;
+              const active = isActive(link.href);
               return (
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setActive(link.name)}
-                  whileHover={{ backgroundColor: isActive ? undefined : "rgba(11,174,11,0.05)" }}
+                  whileHover={{ backgroundColor: active ? undefined : "rgba(11,174,11,0.05)" }}
                   whileTap={{ scale: 0.97 }}
                   className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors ${
-                    isActive
+                    active
                       ? "bg-[#09B309]/10 text-[#09B309]"
                       : "text-[#6D7873]"
                   }`}
@@ -62,14 +71,31 @@ export default function Navbar() {
             })}
           </div>
 
-          <motion.a
-            href="/waitlist"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 py-[7.6px] bg-[#09B309] text-white text-xs font-medium rounded-full shadow-[0px_1px_3px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)]"
-          >
-            Join Waitlist
-          </motion.a>
+          <div className="flex items-center gap-3">
+            {/* Dark Mode Toggle */}
+            <motion.button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F0F5F0] dark:bg-white/10 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {theme === "dark" ? (
+                <Light size={18} className="text-[#09B309]" />
+              ) : (
+                <Moon size={18} className="text-[#171C1A]" />
+              )}
+            </motion.button>
+
+            <motion.a
+              href="/waitlist"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-[7.6px] bg-[#09B309] text-white text-xs font-medium rounded-full shadow-[0px_1px_3px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)]"
+            >
+              Join Waitlist
+            </motion.a>
+          </div>
         </div>
 
         {/* Mobile */}
@@ -82,12 +108,24 @@ export default function Navbar() {
               height={42}
               className="rounded-full"
             />
-            <span className="text-[20px] font-bold leading-[28px] tracking-[-0.5px] text-[#171C1A] font-[family-name:var(--font-rethink)]">
+            <span className="text-[20px] font-bold leading-[28px] tracking-[-0.5px] text-[#171C1A] dark:text-white font-[family-name:var(--font-rethink)]">
               Waste<span className="text-[#09B309]">Wise</span>
             </span>
           </a>
 
           <div className="flex items-center gap-3">
+            {/* Dark Mode Toggle (Mobile) */}
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="w-5 h-5 flex items-center justify-center"
+            >
+              {theme === "dark" ? (
+                <Light size={20} className="text-[#09B309]" />
+              ) : (
+                <Moon size={20} className="text-[#4A5565]" />
+              )}
+            </button>
+
             {/* Search Icon */}
             <button className="w-5 h-5 flex items-center justify-center">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -124,32 +162,29 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 w-[280px] h-full bg-white z-[70] flex flex-col p-6"
+              className="fixed top-0 right-0 w-[280px] h-full bg-white dark:bg-[#171C1A] z-[70] flex flex-col p-6"
             >
               <div className="flex items-center justify-between mb-8">
-                <span className="text-[18px] font-bold text-[#171C1A] font-[family-name:var(--font-rethink)]">
+                <span className="text-[18px] font-bold text-[#171C1A] dark:text-white font-[family-name:var(--font-rethink)]">
                   Menu
                 </span>
                 <button onClick={() => setMobileMenuOpen(false)}>
-                  <Close size={24} className="text-[#171C1A]" />
+                  <Close size={24} className="text-[#171C1A] dark:text-white" />
                 </button>
               </div>
 
               <div className="flex flex-col gap-2">
                 {navLinks.map((link) => {
-                  const isActive = active === link.name;
+                  const active = isActive(link.href);
                   return (
                     <a
                       key={link.name}
                       href={link.href}
-                      onClick={() => {
-                        setActive(link.name);
-                        setMobileMenuOpen(false);
-                      }}
+                      onClick={() => setMobileMenuOpen(false)}
                       className={`px-4 py-3 rounded-xl text-[15px] font-medium transition-colors ${
-                        isActive
+                        active
                           ? "bg-[#09B309]/10 text-[#09B309]"
-                          : "text-[#6D7873] hover:bg-gray-50"
+                          : "text-[#6D7873] hover:bg-gray-50 dark:hover:bg-white/5"
                       }`}
                     >
                       {link.name}
