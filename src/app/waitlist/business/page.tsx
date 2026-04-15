@@ -73,14 +73,15 @@ export default function WaitlistStep2() {
       initial={{ opacity: 0, x: 30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.3 }}
-      className="relative bg-white border border-[#E3E8E3] rounded-[24px] p-8 lg:py-10 lg:px-8"
+      className="relative bg-white dark:bg-[#1A211A] border border-[#E3E8E3] dark:border-[#2A352A] rounded-[24px] p-6 sm:p-8 lg:py-10 lg:px-8"
+      whileHover={{ boxShadow: "0px 16px 32px -8px rgba(0, 0, 0, 0.1)" }}
       style={{
         boxShadow: "0px 10px 15px -3px rgba(0, 0, 0, 0.05), 0px 4px 6px -4px rgba(0, 0, 0, 0.05)",
       }}
     >
       {/* Card Header */}
       <div className="flex flex-col gap-0 mb-6">
-        <h2 className="text-[20px] font-bold leading-[28px] text-[#171C1A]">
+        <h2 className="text-[20px] font-bold leading-[28px] text-[#171C1A] dark:text-white">
           Business Details
         </h2>
         <p className="text-[14px] leading-[20px] text-[#6D7873]">
@@ -89,10 +90,10 @@ export default function WaitlistStep2() {
       </div>
 
       {/* Form Fields */}
-      <div className="flex flex-col gap-5 pb-2">
+      <div className="flex flex-col gap-4 sm:gap-5 pb-2">
         {/* Business Registration Status — 2 toggle buttons */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A]">
+          <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A] dark:text-white">
             Business Registration Status <span>*</span>
           </label>
           <div className="grid grid-cols-2 gap-5">
@@ -102,7 +103,7 @@ export default function WaitlistStep2() {
               className={`h-[44px] rounded-[12px] text-[14px] font-medium transition-all ${
                 registrationStatus === "registered"
                   ? "bg-[#09B309] text-white"
-                  : "bg-white border border-[#E3E8E3] text-[#6D7873]"
+                  : "bg-white dark:bg-[#0F1210] border border-[#E3E8E3] dark:border-[#2A352A] text-[#6D7873]"
               }`}
             >
               Registered
@@ -113,7 +114,7 @@ export default function WaitlistStep2() {
               className={`h-[44px] rounded-[12px] text-[14px] font-medium transition-all ${
                 registrationStatus === "not-registered"
                   ? "bg-[#09B309] text-white"
-                  : "bg-white border border-[#E3E8E3] text-[#6D7873]"
+                  : "bg-white dark:bg-[#0F1210] border border-[#E3E8E3] dark:border-[#2A352A] text-[#6D7873]"
               }`}
             >
               Not Registered
@@ -129,30 +130,30 @@ export default function WaitlistStep2() {
 
         {/* CAC Number — full width */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A]">
+          <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A] dark:text-white">
             CAC Number
           </label>
           <input
             {...register("cacNumber")}
             placeholder="e.g. RC12345"
-            className="h-[44px] px-4 rounded-[12px] border border-[#E3E8E3] bg-white text-[14px] text-[#171C1A] placeholder:text-[#6D7873] outline-none transition-all focus:border-[#09B309] focus:ring-2 focus:ring-[#09B309]/10"
+            className="h-[44px] px-4 rounded-[12px] border border-[#E3E8E3] dark:border-[#2A352A] bg-white dark:bg-[#0F1210] text-[14px] text-[#171C1A] dark:text-white placeholder:text-[#6D7873] outline-none transition-all focus:border-[#09B309] focus:ring-2 focus:ring-[#09B309]/10"
           />
         </div>
 
         {/* Years of Experience & Number of Staff — 2 col */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div className="flex flex-col gap-1.5">
-            <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A]">
+            <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A] dark:text-white">
               Years of Experience <span>*</span>
             </label>
             <div className="relative">
               <select
                 {...register("yearsOfExperience", { required: "Select years of experience" })}
-                className={`w-full h-[44px] px-4 pr-10 rounded-[12px] border bg-white text-[14px] outline-none appearance-none cursor-pointer transition-all ${
+                className={`w-full h-[44px] px-4 pr-10 rounded-[12px] border bg-white dark:bg-[#0F1210] text-[14px] text-[#171C1A] dark:text-white outline-none appearance-none cursor-pointer transition-all ${
                   errors.yearsOfExperience
                     ? "border-red-400 focus:ring-2 focus:ring-red-100"
-                    : "border-[#E3E8E3] focus:border-[#09B309] focus:ring-2 focus:ring-[#09B309]/10"
-                } ${watch("yearsOfExperience") ? "text-[#171C1A]" : "text-[#6D7873]"}`}
+                    : "border-[#E3E8E3] dark:border-[#2A352A] focus:border-[#09B309] focus:ring-2 focus:ring-[#09B309]/10"
+                } ${watch("yearsOfExperience") ? "text-[#171C1A] dark:text-white" : "text-[#6D7873]"}`}
               >
                 <option value="" disabled>Select</option>
                 {experienceOptions.map((opt) => (
@@ -169,17 +170,17 @@ export default function WaitlistStep2() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A]">
+            <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A] dark:text-white">
               Number of Drivers/Staff <span>*</span>
             </label>
             <div className="relative">
               <select
                 {...register("numberOfStaff", { required: "Select number of staff" })}
-                className={`w-full h-[44px] px-4 pr-10 rounded-[12px] border bg-white text-[14px] outline-none appearance-none cursor-pointer transition-all ${
+                className={`w-full h-[44px] px-4 pr-10 rounded-[12px] border bg-white dark:bg-[#0F1210] text-[14px] text-[#171C1A] dark:text-white outline-none appearance-none cursor-pointer transition-all ${
                   errors.numberOfStaff
                     ? "border-red-400 focus:ring-2 focus:ring-red-100"
-                    : "border-[#E3E8E3] focus:border-[#09B309] focus:ring-2 focus:ring-[#09B309]/10"
-                } ${watch("numberOfStaff") ? "text-[#171C1A]" : "text-[#6D7873]"}`}
+                    : "border-[#E3E8E3] dark:border-[#2A352A] focus:border-[#09B309] focus:ring-2 focus:ring-[#09B309]/10"
+                } ${watch("numberOfStaff") ? "text-[#171C1A] dark:text-white" : "text-[#6D7873]"}`}
               >
                 <option value="" disabled>Select</option>
                 {staffOptions.map((opt) => (
@@ -198,16 +199,16 @@ export default function WaitlistStep2() {
 
         {/* Operational Coverage Area — full width */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A]">
+          <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A] dark:text-white">
             Operational Coverage Area <span>*</span>
           </label>
           <input
             {...register("operationalCoverageArea", { required: "Coverage area is required" })}
             placeholder="e.g. Port Harcourt, Obio-Akpor"
-            className={`h-[44px] px-4 rounded-[12px] border bg-white text-[14px] text-[#171C1A] placeholder:text-[#6D7873] outline-none transition-all ${
+            className={`h-[44px] px-4 rounded-[12px] border bg-white dark:bg-[#0F1210] text-[14px] text-[#171C1A] dark:text-white placeholder:text-[#6D7873] outline-none transition-all ${
               errors.operationalCoverageArea
                 ? "border-red-400 focus:ring-2 focus:ring-red-100"
-                : "border-[#E3E8E3] focus:border-[#09B309] focus:ring-2 focus:ring-[#09B309]/10"
+                : "border-[#E3E8E3] dark:border-[#2A352A] focus:border-[#09B309] focus:ring-2 focus:ring-[#09B309]/10"
             }`}
           />
           {errors.operationalCoverageArea && (
@@ -219,7 +220,7 @@ export default function WaitlistStep2() {
 
         {/* Upload ID */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A]">
+          <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A] dark:text-white">
             Upload ID (NIN / Voter&apos;s Card / Driver&apos;s License)
           </label>
           <FileUploadZone
@@ -231,7 +232,7 @@ export default function WaitlistStep2() {
 
         {/* Upload Business Documents */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A]">
+          <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A] dark:text-white">
             Upload Business Documents <span>*</span>
           </label>
           <FileUploadZone
@@ -243,26 +244,27 @@ export default function WaitlistStep2() {
       </div>
 
       {/* Bottom Navigation */}
-      <div className="flex items-center justify-between pt-6 mt-6 border-t border-[#E3E8E3]">
-        <motion.button
-          type="button"
-          onClick={() => router.push("/waitlist")}
-          className="flex items-center gap-4 h-[44px] px-6 rounded-full border border-[#E3E8E3] text-[14px] font-semibold text-[#171C1A] cursor-pointer hover:bg-[#F5F5F5]"
-          style={{ boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.05)" }}
-          whileTap={{ scale: 0.97 }}
-        >
-          <ArrowLeft size={16} />
-          Back
-        </motion.button>
-
+      <div className="flex flex-col sm:flex-row-reverse items-center sm:justify-between gap-3 pt-6 mt-6 border-t border-[#E3E8E3] dark:border-[#2A352A]">
         <motion.button
           type="submit"
-          className="flex items-center gap-4 h-[44px] px-8 rounded-full bg-[#09B309] text-[14px] font-semibold text-white cursor-pointer"
+          className="flex items-center justify-center gap-4 h-[44px] w-full sm:w-auto px-8 rounded-full bg-[#09B309] text-[14px] font-semibold text-white cursor-pointer"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
         >
           Continue
           <ArrowRight size={16} />
+        </motion.button>
+
+        <motion.button
+          type="button"
+          onClick={() => router.push("/waitlist")}
+          className="flex items-center justify-center gap-4 h-[44px] w-full sm:w-auto px-6 rounded-full border border-[#E3E8E3] dark:border-[#2A352A] text-[14px] font-semibold text-[#171C1A] dark:text-white cursor-pointer hover:bg-[#F5F5F5] dark:hover:bg-white/5"
+          style={{ boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.05)" }}
+          whileHover={{ scale: 1.02, x: -2 }}
+          whileTap={{ scale: 0.97 }}
+        >
+          <ArrowLeft size={16} />
+          Back
         </motion.button>
       </div>
     </motion.form>
@@ -310,7 +312,7 @@ function FileUploadZone({
       className={`flex flex-col items-center justify-center gap-2 py-6 px-4 rounded-[10px] border border-dashed cursor-pointer transition-colors ${
         isDragging
           ? "border-[#09B309] bg-[#09B309]/5"
-          : "border-[#E0E1E0] bg-[#FAFAFA] hover:border-[#09B309]/40"
+          : "border-[#E0E1E0] dark:border-[#2A352A] bg-[#FAFAFA] dark:bg-[#0F1210] hover:border-[#09B309]/40"
       }`}
     >
       <input
