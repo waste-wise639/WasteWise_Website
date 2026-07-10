@@ -4,6 +4,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { LogoTwitter, LogoFacebook, LogoInstagram, LogoLinkedin } from "@carbon/icons-react";
 
+function LogoTiktok({ size = 18, className }: { size?: number; className?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M16.5 3c.31 2.13 1.55 3.63 3.5 3.86v2.63c-1.29.1-2.5-.29-3.5-1v6.06c0 3.4-2.7 5.87-6 5.58-2.66-.23-4.79-2.48-4.79-5.15 0-3.24 3.03-5.62 6.14-4.86v2.79c-.42-.14-.88-.21-1.34-.14-1.16.16-2.02 1.13-1.93 2.29.09 1.09.99 1.96 2.08 1.98 1.28.03 2.34-1 2.34-2.28V3h3.4Z" />
+    </svg>
+  );
+}
+
 const navLinks = [
   { label: "Home", href: "#" },
   { label: "How It Works", href: "#how-it-works" },
@@ -21,10 +29,11 @@ const supportLinks = [
 ];
 
 const socials = [
-  { Icon: LogoTwitter, href: "https://x.com/wastewiseincltd" },
-  { Icon: LogoFacebook, href: "https://www.facebook.com/me/" },
-  { Icon: LogoInstagram, href: "https://www.instagram.com/wastewise238" },
-  { Icon: LogoLinkedin, href: "#" },
+  { Icon: LogoFacebook, href: "https://www.facebook.com/share/18mTEMs5PT/" },
+  { Icon: LogoInstagram, href: "https://www.instagram.com/wastewiseinc?igsh=dTIzOG85ZzNia2c=" },
+  { Icon: LogoLinkedin, href: "https://www.linkedin.com/company/wastewise-inc/" },
+  { Icon: LogoTwitter, href: "https://x.com/WiseWise613415" },
+  { Icon: LogoTiktok, href: "https://www.tiktok.com/@wastewise.inc?_r=1&_t=ZS-97cELYp2Ttl" },
 ];
 
 export default function Footer() {

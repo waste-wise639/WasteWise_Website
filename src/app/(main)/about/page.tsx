@@ -422,7 +422,7 @@ export default function AboutPage() {
                 {
                   name: "Nicolas Oviasogie",
                   role: "Director",
-                  bio: "A UK-based Public Health graduate with a strong passion for global development, environmental sustainability, and community well-being. Nicolas is committed to tackling pressing health and environmental challenges through innovative solutions that align with WasteWise's mission to build cleaner, healthier communities.",
+                  bio: "A UK-based Public Health Servant with a strong passion for global development, environmental sustainability, and community well-being. Nicolas is committed to tackling pressing health and environmental challenges through innovative solutions that align with WasteWise's mission to build cleaner, healthier communities.",
                   image: "/images/team/nicolas.jpeg",
                 },
                 {
