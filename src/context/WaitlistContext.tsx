@@ -25,7 +25,8 @@ export interface WaitlistFormData {
   wasteTypes: string[];
   ownsVehicles: "yes" | "no" | "";
   numberOfVehicles: string;
-  dailyWeeklyCapacity: string;
+  dailyCapacity: string;
+  weeklyCapacity: string;
   availability: "full-time" | "part-time" | "";
   // Step 4 — Banking & Agreement
   bankName: string;
@@ -55,7 +56,8 @@ const defaultFormData: WaitlistFormData = {
   wasteTypes: [],
   ownsVehicles: "",
   numberOfVehicles: "",
-  dailyWeeklyCapacity: "",
+  dailyCapacity: "",
+  weeklyCapacity: "",
   availability: "",
   bankName: "",
   accountNumber: "",

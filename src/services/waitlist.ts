@@ -1,80 +1,82 @@
-import axios from "axios";
+import { supabase } from "@/services/supabaseClient";
 import { WaitlistFormData } from "@/context/WaitlistContext";
 
-const API_URL = "https://wastewise-api-idho.onrender.com/api";
+const ID_BUCKET = "vendor-id-documents";
+const BUSINESS_BUCKET = "vendor-business-documents";
 
-// Extract first number from a string like "1–2 years" → 1, "5–10 years" → 5
-function extractNumber(str: string): string {
+function extractNumber(str: string): number | null {
   const match = str.match(/\d+/);
-  return match ? match[0] : "0";
+  return match ? Number(match[0]) : null;
+}
+
+function normalizePhone(phone: string): string {
+  const raw = phone.replace(/\s/g, "").replace(/^\+234/, "").replace(/^234/, "").replace(/^0+/, "");
+  return `0${raw}`;
+}
+
+async function uploadDocument(bucket: string, folder: string, file: File): Promise<string> {
+  const safeName = file.name.toLowerCase().replace(/[^a-z0-9.]+/g, "-");
+  const path = `${folder}/${Date.now()}-${safeName}`;
+
+  const { error } = await supabase.storage.from(bucket).upload(path, file, {
+    contentType: file.type,
+    upsert: false,
+  });
+
+  if (error) {
+    console.error(`Upload to ${bucket} failed:`, error);
+    throw new Error("We couldn't upload your documents. Please try again.");
+  }
+
+  return path;
 }
 
 export async function submitWaitlist(formData: WaitlistFormData) {
-  const fd = new FormData();
+  const folder = crypto.randomUUID();
 
-  // Step 1 — Personal Info
-  fd.append("fullname", formData.fullName);
-  fd.append("email", formData.email);
-  // Strip spaces and +234 prefix, send as local Nigerian format 0XXXXXXXXXX
-  const rawPhone = formData.phone.replace(/\s/g, "").replace(/^\+234/, "").replace(/^234/, "").replace(/^0+/, "");
-  const phone = `0${rawPhone}`;
-  fd.append("phone", phone);
-  fd.append("business_name", formData.businessName);
-  fd.append("business_type", formData.businessType);
-  fd.append("country", "Nigeria");
-  fd.append("state", formData.state);
-  fd.append("lga", formData.lga);
-  fd.append("referral_code", "RIWAMA_Rivers");
+  const [idDocumentPath, businessDocumentPath] = await Promise.all([
+    formData.idDocument ? uploadDocument(ID_BUCKET, folder, formData.idDocument) : null,
+    formData.businessDocument ? uploadDocument(BUSINESS_BUCKET, folder, formData.businessDocument) : null,
+  ]);
 
-  // Step 2 — Business Details
-  fd.append("business_reg_status", formData.registrationStatus);
-  fd.append("cac_number", formData.cacNumber || "");
-  fd.append("years_of_experience", extractNumber(formData.yearsOfExperience));
-  fd.append("number_of_drivers", extractNumber(formData.numberOfStaff));
-  fd.append("operation_coverage_area", formData.operationalCoverageArea);
+  const { error } = await supabase.from("vendor_waitlist").insert({
+    full_name: formData.fullName,
+    email: formData.email.trim().toLowerCase(),
+    phone_number: normalizePhone(formData.phone),
+    business_name: formData.businessName,
+    business_type: formData.businessType,
+    country: formData.country || "Nigeria",
+    state: formData.state,
+    lga: formData.lga,
+    referral_code: formData.referralCode,
 
-  if (formData.idDocument) {
-    fd.append("id_avatar", formData.idDocument);
-  }
-  // business_upload_doc is required — send file or empty
-  if (formData.businessDocument) {
-    fd.append("business_upload_doc", formData.businessDocument);
-  }
+    registration_status: formData.registrationStatus,
+    cac_number: formData.cacNumber || null,
+    years_of_experience: extractNumber(formData.yearsOfExperience),
+    number_of_staff: extractNumber(formData.numberOfStaff),
+    operational_coverage_area: formData.operationalCoverageArea,
+    id_document_path: idDocumentPath,
+    business_document_path: businessDocumentPath,
 
-  // Step 3 — Operations
-  // Backend expects a single waste type value, normalize special cases
-  const normalizeWasteType = (w: string) => {
-    const lower = w.toLowerCase();
-    if (lower === "e-waste") return "ewaste";
-    return lower;
-  };
-  const firstWasteType = formData.wasteTypes[0] ? normalizeWasteType(formData.wasteTypes[0]) : "";
-  fd.append("type_of_waste", firstWasteType);
-  fd.append("collection_vehicle", formData.ownsVehicles === "yes" ? "1" : "0");
-  fd.append("number_of_collection_vehicle", formData.numberOfVehicles || "0");
-  // capacity expects: daily, weekly, or monthly
-  const capacityMap: Record<string, string> = {
-    "Less than 1 ton": "daily",
-    "1–5 tons": "daily",
-    "5–10 tons": "weekly",
-    "10–20 tons": "weekly",
-    "20+ tons": "monthly",
-  };
-  fd.append("capacity", capacityMap[formData.dailyWeeklyCapacity] || formData.dailyWeeklyCapacity.toLowerCase());
-  fd.append("availability", formData.availability);
+    waste_types: formData.wasteTypes,
+    owns_vehicles: formData.ownsVehicles === "yes",
+    number_of_vehicles: formData.ownsVehicles === "yes" ? extractNumber(formData.numberOfVehicles) : 0,
+    daily_capacity: formData.dailyCapacity,
+    weekly_capacity: formData.weeklyCapacity,
+    availability: formData.availability,
 
-  // Step 4 — Banking & Agreement
-  fd.append("bank_name", formData.bankName);
-  fd.append("account_number", formData.accountNumber);
-  fd.append("account_name", formData.accountName);
-  fd.append("preferred_payment_mode", formData.preferredPaymentMethod);
-  fd.append("agree_to_terms_and_conditions", formData.agreedToTerms ? "1" : "0");
-
-  const response = await axios.post(`${API_URL}/joinwaitlist`, fd, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
+    bank_name: formData.bankName,
+    account_number: formData.accountNumber,
+    account_name: formData.accountName,
+    preferred_payment_method: formData.preferredPaymentMethod,
+    agreed_to_terms: formData.agreedToTerms,
   });
 
-  return response.data;
+  if (error) {
+    console.error("Waitlist insert failed:", error);
+    if (error.code === "23505") {
+      throw new Error("This email is already on the waitlist.");
+    }
+    throw new Error("Submission failed. Please try again.");
+  }
 }

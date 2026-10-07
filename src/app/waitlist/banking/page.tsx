@@ -57,15 +57,8 @@ export default function WaitlistStep4() {
       setIsSubmitting(true);
       await submitWaitlist(updatedData);
       setSubmitResult("success");
-    } catch (err: any) {
-      console.error("Submission failed:", err?.response?.data || err);
-      const apiError = err?.response?.data;
-      if (apiError?.errors) {
-        const firstError = Object.values(apiError.errors).flat()[0] as string;
-        setErrorMessage(firstError || apiError.message || "Submission failed. Please try again.");
-      } else {
-        setErrorMessage(apiError?.message || "Something went wrong. Please try again.");
-      }
+    } catch (err) {
+      setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       setSubmitResult("error");
     } finally {
       setIsSubmitting(false);

@@ -9,7 +9,7 @@ import { useWaitlist } from "@/context/WaitlistContext";
 
 const wasteTypeOptions = ["Solid", "Liquid", "Recyclable", "Hazardous", "E-Waste", "Organic"];
 
-const capacityOptions = [
+const dailyCapacityOptions = [
   "Less than 1 ton",
   "1–5 tons",
   "5–10 tons",
@@ -17,9 +17,18 @@ const capacityOptions = [
   "20+ tons",
 ];
 
+const weeklyCapacityOptions = [
+  "Less than 5 tons",
+  "5–20 tons",
+  "20–50 tons",
+  "50–100 tons",
+  "100+ tons",
+];
+
 interface Step3Fields {
   numberOfVehicles: string;
-  dailyWeeklyCapacity: string;
+  dailyCapacity: string;
+  weeklyCapacity: string;
 }
 
 export default function WaitlistStep3() {
@@ -33,9 +42,15 @@ export default function WaitlistStep3() {
   } = useForm<Step3Fields>({
     defaultValues: {
       numberOfVehicles: formData.numberOfVehicles,
-      dailyWeeklyCapacity: formData.dailyWeeklyCapacity,
+      dailyCapacity: formData.dailyCapacity,
+      weeklyCapacity: formData.weeklyCapacity,
     },
   });
+
+  const capacityFields = [
+    { name: "dailyCapacity" as const, label: "Daily Capacity", options: dailyCapacityOptions, error: "Select daily capacity" },
+    { name: "weeklyCapacity" as const, label: "Weekly Capacity", options: weeklyCapacityOptions, error: "Select weekly capacity" },
+  ];
 
   const [selectedWasteTypes, setSelectedWasteTypes] = useState<string[]>(formData.wasteTypes);
   const [ownsVehicles, setOwnsVehicles] = useState<"yes" | "no" | "">(formData.ownsVehicles);
@@ -204,40 +219,42 @@ export default function WaitlistStep3() {
           </motion.div>
         )}
 
-        {/* Daily/Weekly Capacity + Availability — side by side */}
-        <div className="flex flex-col sm:flex-row gap-5 sm:gap-7">
-          {/* Daily/Weekly Capacity */}
-          <div className="flex flex-col gap-1.5 flex-1">
-            <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A] dark:text-white">
-              Daily/Weekly Capacity <span>*</span>
-            </label>
-            <div className="relative">
-              <select
-                {...register("dailyWeeklyCapacity", { required: "Select capacity" })}
-                className={`w-full h-[44px] px-4 pr-10 rounded-[12px] border bg-white dark:bg-[#0F1210] text-[14px] text-[#171C1A] dark:text-white outline-none appearance-none cursor-pointer transition-all ${
-                  errors.dailyWeeklyCapacity
-                    ? "border-red-400 focus:ring-2 focus:ring-red-100"
-                    : "border-[#E3E8E3] dark:border-[#2A352A] focus:border-[#09B309] focus:ring-2 focus:ring-[#09B309]/10"
-                } ${formData.dailyWeeklyCapacity ? "text-[#171C1A] dark:text-white" : "text-[#6D7873]"}`}
-              >
-                <option value="" disabled>Select</option>
-                {capacityOptions.map((opt) => (
-                  <option key={opt} value={opt}>{opt}</option>
-                ))}
-              </select>
-              <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6D7873] pointer-events-none" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-7">
+          {capacityFields.map((field) => (
+            <div key={field.name} className="flex flex-col gap-1.5">
+              <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A] dark:text-white">
+                {field.label} <span>*</span>
+              </label>
+              <div className="relative">
+                <select
+                  {...register(field.name, { required: field.error })}
+                  className={`w-full h-[44px] px-4 pr-10 rounded-[12px] border bg-white dark:bg-[#0F1210] text-[14px] text-[#171C1A] dark:text-white outline-none appearance-none cursor-pointer transition-all ${
+                    errors[field.name]
+                      ? "border-red-400 focus:ring-2 focus:ring-red-100"
+                      : "border-[#E3E8E3] dark:border-[#2A352A] focus:border-[#09B309] focus:ring-2 focus:ring-[#09B309]/10"
+                  } ${formData[field.name] ? "text-[#171C1A] dark:text-white" : "text-[#6D7873]"}`}
+                >
+                  <option value="" disabled>Select</option>
+                  {field.options.map((opt) => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
+                </select>
+                <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6D7873] pointer-events-none" />
+              </div>
+              {errors[field.name] && (
+                <motion.span
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-[12px] text-red-500"
+                >
+                  {errors[field.name]?.message}
+                </motion.span>
+              )}
             </div>
-            {errors.dailyWeeklyCapacity && (
-              <motion.span
-                initial={{ opacity: 0, y: -4 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-[12px] text-red-500"
-              >
-                {errors.dailyWeeklyCapacity.message}
-              </motion.span>
-            )}
-          </div>
+          ))}
+        </div>
 
+        <div>
           {/* Availability — Full Time / Part-time pills */}
           <div className="flex flex-col gap-1.5">
             <label className="text-[14px] font-semibold leading-[20px] text-[#171C1A] dark:text-white">

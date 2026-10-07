@@ -127,16 +127,24 @@ export default function WaitlistStep1() {
                 +234
               </span>
               <input
-                {...register("phone", { required: "Phone number is required" })}
+                {...register("phone", {
+                  required: "Phone number is required",
+                  validate: (value) =>
+                    /^[789]\d{9}$/.test(value.replace(/\s/g, "")) || "Enter a valid 10-digit number, e.g. 803 123 4567",
+                })}
                 type="tel"
                 placeholder="800 000 0000"
                 maxLength={12}
                 onChange={(e) => {
-                  const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+                  const digits = e.target.value
+                    .replace(/\D/g, "")
+                    .replace(/^234(?=\d{10})/, "")
+                    .replace(/^0+/, "")
+                    .slice(0, 10);
                   const formatted = digits.replace(/(\d{3})(\d{0,3})(\d{0,4})/, (_, a, b, c) =>
                     [a, b, c].filter(Boolean).join(" ")
                   );
-                  setValue("phone", formatted);
+                  setValue("phone", formatted, { shouldValidate: !!errors.phone });
                 }}
                 className="flex-1 h-full px-3 bg-white dark:bg-[#0F1210] text-[14px] text-[#171C1A] dark:text-white placeholder:text-[#6D7873] outline-none"
               />
