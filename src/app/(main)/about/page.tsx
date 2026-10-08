@@ -479,45 +479,62 @@ export default function AboutPage() {
             WasteWise is actively building a robust and sustainable waste management ecosystem by fostering strong collaborations with key stakeholders across the value chain. At the core of this ecosystem is its partnership with the Rivers State Waste Management Agency (RIWAMA), which provides regulatory alignment, operational support, and access to government-backed waste infrastructure. This collaboration ensures that WasteWise operates within established environmental standards while leveraging public-sector resources to scale its impact.
           </motion.p>
 
-          {/* Featured Partner: RIWAMA */}
-          <motion.div
-            className="w-full mt-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-          >
-            <div className="relative bg-white dark:bg-[#1A211A] border border-[#09B309]/30 rounded-[16px] overflow-hidden">
-              <div
-                className="absolute inset-0 pointer-events-none opacity-60"
-                style={{
-                  background: "radial-gradient(80% 120% at 0% 0%, rgba(9, 179, 9, 0.12) 0%, rgba(9, 179, 9, 0) 60%)",
-                }}
-              />
-              <div className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-5 p-5 sm:p-6">
-                <div className="flex-shrink-0 w-[88px] h-[88px] sm:w-[104px] sm:h-[104px] rounded-[14px] bg-white flex items-center justify-center p-2 ring-1 ring-[#E3E8E3]">
-                  <Image
-                    src="/images/partners/riwama.jpeg"
-                    alt="Rivers State Waste Management Agency (RIWAMA)"
-                    width={104}
-                    height={104}
-                    className="w-full h-full object-contain"
+          {/* Featured Partners */}
+          <div className="w-full mt-6 flex flex-col gap-4">
+            {[
+              {
+                logo: "/images/partners/riwama.jpeg",
+                badge: "Core Government Partner",
+                name: "Rivers State Waste Management Agency (RIWAMA)",
+                description: "Regulatory alignment, operational support, and access to government-backed waste infrastructure.",
+              },
+              {
+                logo: "/images/partners/nddc.png",
+                badge: "Institutional Collaborator",
+                name: "Niger Delta Development Commission (NDDC)",
+                description: "Environmental Protection & Control (EPC) Directorate",
+              },
+            ].map((partner, i) => (
+              <motion.div
+                key={partner.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.25 + i * 0.1 }}
+              >
+                <div className="relative bg-white dark:bg-[#1A211A] border border-[#09B309]/30 rounded-[16px] overflow-hidden">
+                  <div
+                    className="absolute inset-0 pointer-events-none opacity-60"
+                    style={{
+                      background: "radial-gradient(80% 120% at 0% 0%, rgba(9, 179, 9, 0.12) 0%, rgba(9, 179, 9, 0) 60%)",
+                    }}
                   />
+                  <div className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-5 p-5 sm:p-6">
+                    <div className="flex-shrink-0 w-[88px] h-[88px] sm:w-[104px] sm:h-[104px] rounded-[14px] bg-white flex items-center justify-center p-2 ring-1 ring-[#E3E8E3]">
+                      <Image
+                        src={partner.logo}
+                        alt={partner.name}
+                        width={104}
+                        height={104}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div className="flex-1 flex flex-col gap-1.5 text-center sm:text-left">
+                      <span className="text-[11px] font-bold leading-[14px] tracking-[1px] uppercase text-[#09B309]">
+                        {partner.badge}
+                      </span>
+                      <h3 className="text-[18px] sm:text-[20px] font-bold leading-[26px] text-[#171C1A] dark:text-white">
+                        {partner.name}
+                      </h3>
+                      <p className="text-[13px] sm:text-[14px] leading-[22px] text-[#6D7873]">
+                        {partner.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex-1 flex flex-col gap-1.5 text-center sm:text-left">
-                  <span className="text-[11px] font-bold leading-[14px] tracking-[1px] uppercase text-[#09B309]">
-                    Core Government Partner
-                  </span>
-                  <h3 className="text-[18px] sm:text-[20px] font-bold leading-[26px] text-[#171C1A] dark:text-white">
-                    Rivers State Waste Management Agency (RIWAMA)
-                  </h3>
-                  <p className="text-[13px] sm:text-[14px] leading-[22px] text-[#6D7873]">
-                    Regulatory alignment, operational support, and access to government-backed waste infrastructure.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            ))}
+          </div>
 
           {/* Partner cards */}
           <motion.div
